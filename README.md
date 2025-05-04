@@ -1,4 +1,3 @@
-```markdown
 # Carvalima Freight Quoting Agent (NestJS + LangGraph Supervisor)
 
 ## Overview
@@ -235,4 +234,3 @@ HTTP is stateless. To enable multi-turn conversations, this application persists
 *   **Missing Logic:** Features like Cubagem calculation, specific merchandise code validation, CIF/FOB checks, risk area checks, etc., are not implemented in the mocks or agent logic.
 *   **Basic Session ID:** Using a simple header for session ID is suitable for testing but not secure or robust enough for production.
 *   **Structured Output:** The agent currently responds in natural language. Implementing structured JSON output for external consumption (e.g., Sacflow) would require modifications.
-```
