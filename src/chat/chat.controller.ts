@@ -1,7 +1,8 @@
 // src/chat/chat.controller.ts
-import { Controller, Post, Body, ValidationPipe } from '@nestjs/common';
+import { Controller, Post, Body, ValidationPipe, Req } from '@nestjs/common';
 import { ChatService } from './chat.service';
 import { ChatRequestDto } from './dto/chat-request.dto';
+import { Request } from 'express';
 
 @Controller('chat')
 export class ChatController {
@@ -9,9 +10,9 @@ export class ChatController {
 
   @Post()
   async handleChat(
-    @Body(new ValidationPipe()) chatRequestDto: ChatRequestDto // Use DTO and ValidationPipe
+    @Body(new ValidationPipe()) chatRequestDto: ChatRequestDto,
+    @Req() req: Request
   ) {
-    const result = await this.chatService.processMessage(chatRequestDto.message);
-    return result;
+    return this.chatService.processMessage(chatRequestDto.message, req);
   }
 }

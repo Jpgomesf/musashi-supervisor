@@ -83,4 +83,23 @@ export class CarvalimaSupervisorService implements OnModuleInit {
     const finalState = await this.compiledWorkflow.invoke(initialState, { recursionLimit: 50 });
     return finalState;
   }
+
+  async runWorkflowWithHistory(messages: BaseMessage[]): Promise<any> {
+    if (!this.compiledWorkflow) {
+      throw new Error('Supervisor Workflow not compiled');
+    }
+    if (!messages || messages.length === 0) {
+      console.warn("Running workflow with empty history.");
+    } else {
+      console.log(`[SupervisorService] Running workflow with ${messages.length} messages in history.`);
+    }
+
+
+    const initialState = { messages: messages };
+
+    const finalState = await this.compiledWorkflow.invoke(initialState, { recursionLimit: 50 });
+
+    return finalState;
+  }
 }
+

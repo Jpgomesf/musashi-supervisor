@@ -1,13 +1,17 @@
 // src/langchain/langchain.module.ts
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ToolsService } from './tools.service';
-import { AgentsService } from './agents.service';
-import { SupervisorService } from './supervisor.service';
+import { CarvalimaToolsService } from './tools/carvalima.tools.service';
+import { CarvalimaSupervisorService } from './supervisor/carvalima.supervisor.service';
+import { CarvalimaAgentsService } from './agents/carvalima.agents.service';
 
 @Module({
   imports: [ConfigModule],
-  providers: [ToolsService, AgentsService, SupervisorService],
-  exports: [SupervisorService],
+  providers: [
+    CarvalimaToolsService,
+    CarvalimaSupervisorService,
+    CarvalimaAgentsService
+  ],
+  exports: [CarvalimaSupervisorService],
 })
 export class LangchainModule { }

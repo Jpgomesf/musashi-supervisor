@@ -1,5 +1,5 @@
 // src/chat/dto/chat-request.dto.ts
-import { IsString, IsNotEmpty } from 'class-validator'; // You might need: npm install class-validator class-transformer
+import { IsString, IsNotEmpty } from 'class-validator';
 
 export class ChatRequestDto {
   @IsString()

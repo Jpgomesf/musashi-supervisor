@@ -2,10 +2,15 @@
 import { Module } from '@nestjs/common';
 import { ChatController } from './chat.controller';
 import { ChatService } from './chat.service';
-import { LangchainModule } from '../langchain/langchain.module'; // Import LangchainModule
+import { LangchainModule } from '../langchain/langchain.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Conversation, ConversationSchema } from './schemas/conversation.schema';
 
 @Module({
-  imports: [LangchainModule], // Import LangchainModule to access SupervisorService
+  imports: [
+    LangchainModule,
+    MongooseModule.forFeature([{ name: Conversation.name, schema: ConversationSchema }]),
+  ],
   controllers: [ChatController],
   providers: [ChatService],
 })
